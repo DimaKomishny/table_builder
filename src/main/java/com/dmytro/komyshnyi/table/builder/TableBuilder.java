@@ -51,10 +51,9 @@ public class TableBuilder {
 
     private List<String[]> parseText(String text) {
         String[] rowStr = text.split("\n");
-        List<String[]> cellStr = Arrays.stream(rowStr)
+        return Arrays.stream(rowStr)
                 .map(row -> row.split(","))
                 .collect(Collectors.toList());
-        return cellStr;
     }
 
     private List<Row> createRows(List<String[]> cellValues) {
@@ -76,15 +75,19 @@ public class TableBuilder {
     }
 
     private void setColumnSize(List<Row> table, int column) {
-        int size = table.stream()
+        int size = findLongestCellInColumn(table, column);
+        table.stream()
+                .map(row -> row.getCells().get(column))
+                .forEach(cell -> cell.setMinSize(size));
+    }
+
+    private int findLongestCellInColumn(List<Row> table, int column) {
+        return table.stream()
                 .map(row -> row.getCells().get(column))
                 .max(Comparator.comparingInt(c -> c.getValue().length()))
                 .orElseThrow(RuntimeException::new)
                 .getValue()
                 .length();
-        table.stream()
-                .map(row -> row.getCells().get(column))
-                .forEach(cell -> cell.setMinSize(size));
     }
 
     private static String addSign(int number, char sign) {

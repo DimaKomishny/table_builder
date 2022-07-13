@@ -9,5 +9,5 @@ import java.util.List;
 @AllArgsConstructor
 public class Row {
 
-    List<Cell> cells;
+    private List<Cell> cells;
 }
