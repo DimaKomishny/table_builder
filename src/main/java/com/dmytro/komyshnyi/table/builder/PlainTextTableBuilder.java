@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class TableBuilderPlainText {
+public class PlainTextTableBuilder implements TableBuilder {
 
     private static final String BORDER_VERTICAL = "|";
     private static final String BORDER_HORIZONTAL = "-";
