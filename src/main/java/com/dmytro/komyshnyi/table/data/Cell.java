@@ -7,8 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class Cell {
 
-    private String value = "";
-    private int minSize = 0;
+    private String value;
+    private int minSize;
 
     public Cell(String value) {
         this.value = value;

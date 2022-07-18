@@ -22,7 +22,9 @@ public class TableBuilder {
         for (Row row : rows) {
             stringBuilder.append(buildRow(row));
         }
-        return stringBuilder.toString();
+        return stringBuilder.
+                insert(0, buildBorder(rows.get(0)))
+                .toString();
     }
 
     private String buildRow(Row row) {
